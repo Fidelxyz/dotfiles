@@ -5,26 +5,7 @@ return {
 
     opts = {
         flavour = "mocha",
-        integrations = {
-            aerial = true,
-            blink_cmp = true,
-            copilot_vim = true,
-            diffview = true,
-            dropbar = {
-                enabled = true,
-                color_mode = true,
-            },
-            flash = true,
-            harpoon = true,
-            indent_blankline = {
-                enabled = true,
-                scope_color = "subtext0",
-                colored_indent_levels = false,
-            },
-            mason = true,
-            noice = true,
-            which_key = true,
-        },
+        auto_integrations = true,
 
         ---@module 'catppuccin.colors'
         ---@param colors CtpColors<string>

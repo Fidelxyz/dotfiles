@@ -30,6 +30,7 @@ require("lazy").setup({
         { import = "config.vscode" },
     },
     -- Configure any other settings here. See the documentation for more details.
+    git = { timeout = 600 },
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates

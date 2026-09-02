@@ -23,6 +23,7 @@ return {
                 "diff",
                 "markdown",
                 "markdown_inline",
+                "nix",
                 "printf",
                 "query",
                 "regex",
