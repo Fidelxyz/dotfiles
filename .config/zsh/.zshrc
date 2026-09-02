@@ -6,7 +6,14 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 # ========================================
 
-[[ ! -d "$HOME/.local/bin" ]] || export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
 
 # ========================================
 
@@ -14,7 +21,7 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 source "$ZDOTDIR/.ohmyzsh.zsh"
 
 # Powerlevel10k
-[[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+[[ -f "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh"
 
 # fzf
 if (( $+commands[fd] )); then
@@ -30,5 +37,5 @@ fi
 
 # ========================================
 
-[[ ! -f "$ZDOTDIR/zshrc-local.zsh" ]] || source "$ZDOTDIR/zshrc-local.zsh"
-[[ ! -f "$ZDOTDIR/secrets.zsh" ]]     || source "$ZDOTDIR/secrets.zsh"
+[[ -f "$ZDOTDIR/zshrc-local.zsh" ]] && source "$ZDOTDIR/zshrc-local.zsh"
+[[ -f "$ZDOTDIR/secrets.zsh" ]]     && source "$ZDOTDIR/secrets.zsh"
