@@ -1,7 +1,10 @@
+nix
+
 \.DS_Store
 
 \.git
 \.gitignore
 \.gitmodules
+\.jj
 
 \.stylua.toml
