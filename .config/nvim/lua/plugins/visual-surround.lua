@@ -6,10 +6,17 @@ return {
     keys = {
         {
             "<C-b>",
-            mode = "v",
             function()
-                require("visual-surround").surround("*")
+                local filetype = vim.bo.filetype
+                local surround = require("visual-surround")
+                if filetype == "markdown" then
+                    surround.surround("**")
+                elseif filetype == "typst" then
+                    surround.surround("*")
+                end
             end,
+            mode = "v",
+            ft = { "typst", "markdown" },
         },
     },
 
