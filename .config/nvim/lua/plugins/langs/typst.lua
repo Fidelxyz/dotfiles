@@ -1,14 +1,5 @@
 return {
     {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        optional = true,
-        opts = {
-            ensure_installed = {
-                "tinymist",
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         optional = true,
         opts = function()

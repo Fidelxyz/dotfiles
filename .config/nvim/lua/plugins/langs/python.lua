@@ -1,15 +1,5 @@
 return {
     {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        optional = true,
-        opts = {
-            ensure_installed = {
-                "ruff",
-                "basedpyright",
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         optional = true,
         opts = function()

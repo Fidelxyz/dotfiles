@@ -1,18 +1,5 @@
 return {
     {
-        "whoissethdaniel/mason-tool-installer.nvim",
-        optional = true,
-        opts = {
-            ensure_installed = {
-                "biome", -- for biome-organize-imports
-                "vtsls",
-                "vue_ls",
-                "tailwindcss",
-                "prettier",
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         optional = true,
         opts = function()

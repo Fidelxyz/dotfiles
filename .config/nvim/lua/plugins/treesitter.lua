@@ -34,13 +34,4 @@ return {
             })
         end,
     },
-    {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        optional = true,
-        opts = {
-            ensure_installed = {
-                "tree-sitter-cli",
-            },
-        },
-    },
 }

@@ -1,15 +1,5 @@
 return {
     {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        optional = true,
-        opts = {
-            ensure_installed = {
-                "clang-format",
-                "glsl_analyzer",
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         optional = true,
         opts = function()
