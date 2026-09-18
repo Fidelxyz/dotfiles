@@ -23,6 +23,8 @@ source "$ZDOTDIR/.ohmyzsh.zsh"
 # Powerlevel10k
 [[ -f "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh"
 
+alias ls='ls --color=auto'
+
 # fzf
 if (( $+commands[fd] )); then
     export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude .git"
