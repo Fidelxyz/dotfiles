@@ -10,5 +10,6 @@ return {
             desc = "Toggle",
         },
     },
+
     opts = {},
 }
