@@ -69,6 +69,7 @@
           pkgs.stow
           pkgs.tlrc
           pkgs.dua
+          pkgs.tree-sitter
 
           # Version Control Systems
           pkgs.git
@@ -80,6 +81,8 @@
           # Python
           pkgs.python3
           pkgs.uv
+          pkgs.ruff
+          pkgs.basedpyright
 
           # Node.js
           pkgs.nodejs_22
@@ -87,6 +90,17 @@
 
           # Rust
           pkgs.rustup
+
+          # Lua
+          pkgs.lua
+          pkgs.luarocks
+          pkgs.stylua
+
+          # YAML
+          pkgs.yamlfmt
+
+          # Shell
+          pkgs.shellcheck
 
           # Media Processing
           pkgs.ffmpeg
@@ -134,6 +148,7 @@
           "karabiner-elements"
           "keka"
           "linearmouse"
+          "lulu"
           "snipaste"
 
           # Fonts
@@ -159,6 +174,7 @@
           "playcover-community"
           "shutter-encoder"
           "squirrel-app"
+          "steam"
           "tencent-meeting"
           "tuxera-ntfs"
         ];
