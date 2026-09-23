@@ -1,6 +1,6 @@
 # Instructions
 
-- NEVER install system packages on the host unless explicitly instructed. If you need to run a package that is not installed, use `nix run nixpkgs#<package>` instead.
+- NEVER install system packages on the host unless explicitly instructed. If you need to run a package that is not installed, use `nix run` or `nix-shell` instead.
 - If you do not have the tools for your tasks, **PAUSE** and **ASK FOR INSTRUCTIONS**. Do NOT install new packages.
 - The user may have modified files between conversations. Accept the user's changes as-is; do NOT revert them.
 
