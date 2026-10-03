@@ -6,8 +6,8 @@ require("events")
 
 config.set_environment_variables = {
     PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
+    TERMINFO_DIRS = "/run/current-system/sw/share/terminfo",
 }
-
 config.term = "wezterm"
 
 -- Window
