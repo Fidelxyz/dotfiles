@@ -14,6 +14,14 @@
     configuration = { pkgs, config, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
+
+      # Expose libiconv to Rust and C linkers outside a Nix development shell.
+      environment.variables = {
+        LIBRARY_PATH = "${pkgs.libiconv}/lib";
+        PKG_CONFIG_PATH = "${pkgs.ffmpeg.dev}/lib/pkgconfig";
+        LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+      };
+
       environment.systemPackages =
         [
           # GNU programs non-existing in macOS
@@ -69,7 +77,13 @@
           pkgs.stow
           pkgs.tlrc
           pkgs.dua
+          pkgs.wezterm.terminfo
+
+          # Development
           pkgs.tree-sitter
+          pkgs.docker
+          pkgs.libiconv
+          pkgs.pkg-config
 
           # Version Control Systems
           pkgs.git
@@ -91,9 +105,16 @@
           # Rust
           pkgs.rustup
 
+          # C / C++
+          pkgs.clang
+          pkgs.clang-tools
+          pkgs.llvmPackages.libclang.lib
+          pkgs.llvmPackages.llvm # dsymutil used by clang on macOS
+
           # Lua
           pkgs.lua
           pkgs.luarocks
+          pkgs.lua-language-server
           pkgs.stylua
 
           # YAML
@@ -104,11 +125,13 @@
 
           # Media Processing
           pkgs.ffmpeg
+          pkgs.ffmpeg.dev
           pkgs.gpac
           pkgs.yt-dlp
 
           pkgs.gh
           pkgs.opencode
+          pkgs.codex
 
           # Casks
           pkgs.qbittorrent
@@ -130,9 +153,21 @@
         onActivation.cleanup = "zap";
         onActivation.upgrade = true;
 
+        taps = [
+          {
+            name = "jundot/omlx";
+            clone_target = "https://github.com/jundot/omlx";
+          }
+        ];
+
+        brews = [
+          "jundot/omlx/omlx"
+        ];
+
         casks = [
           # Development
           "imhex"
+          "orbstack"
           "termius"
           "utm"
           "visual-studio-code"
@@ -166,15 +201,12 @@
           "feishu"
           "handbrake-app"
           "iina"
-          "lm-studio"
           "mark-text"
           "notion"
           "obs"
           "pearcleaner"
-          "playcover-community"
           "shutter-encoder"
           "squirrel-app"
-          "steam"
           "tencent-meeting"
           "tuxera-ntfs"
         ];
@@ -195,6 +227,14 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      nix.settings.auto-optimise-store = true;
+      nix.gc = {
+        automatic = true;
+        interval = { Weekday = 0; Hour = 0; Minute = 0; };
+        options = "--delete-older-than 30d";
+      };
+
 
       system.primaryUser = "fidel";
 
