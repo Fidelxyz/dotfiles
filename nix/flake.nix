@@ -71,6 +71,7 @@
           pkgs.tmux
           pkgs.fd
           pkgs.ripgrep
+          pkgs.ast-grep
           pkgs.fzf
           pkgs.zoxide
           pkgs.direnv
@@ -128,10 +129,13 @@
           pkgs.ffmpeg.dev
           pkgs.gpac
           pkgs.yt-dlp
+          pkgs.czkawka
 
           pkgs.gh
           pkgs.opencode
           pkgs.codex
+          pkgs.ccusage
+          pkgs.xdg-ninja
 
           # Casks
           pkgs.qbittorrent
@@ -152,6 +156,7 @@
         onActivation.autoUpdate = true;
         onActivation.cleanup = "zap";
         onActivation.upgrade = true;
+        onActivation.extraFlags = [ "--verbose" ];
 
         taps = [
           {
@@ -197,6 +202,7 @@
           "basictex"
           "blender@lts"
           "calibre"
+          "cc-switch"
           "chatgpt"
           "feishu"
           "handbrake-app"
@@ -228,10 +234,19 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
-      nix.settings.auto-optimise-store = true;
+      nix.optimise = {
+        automatic = true;
+        interval = {
+          Hour = 3;
+          Minute = 0;
+        };
+      };
       nix.gc = {
         automatic = true;
-        interval = { Weekday = 0; Hour = 0; Minute = 0; };
+        interval = {
+          Hour = 3;
+          Minute = 0;
+        };
         options = "--delete-older-than 30d";
       };
 
