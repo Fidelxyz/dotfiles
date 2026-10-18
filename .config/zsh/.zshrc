@@ -45,4 +45,3 @@ fi
 # ========================================
 
 [[ -f "$ZDOTDIR/zshrc-local.zsh" ]] && source "$ZDOTDIR/zshrc-local.zsh"
-[[ -f "$ZDOTDIR/secrets.zsh" ]]     && source "$ZDOTDIR/secrets.zsh"
