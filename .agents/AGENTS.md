@@ -4,6 +4,11 @@
 - If you do not have the tools for your tasks, **PAUSE** and **ASK FOR INSTRUCTIONS**. Do NOT install new packages.
 - The user may have modified files between conversations. Accept the user's changes as-is; do NOT revert them.
 
+# Subagents
+
+You are authorized to create explicit subagents when bounded, independent delegation materially improves progress or verification.
+Review every result from subagents after they complete their work.
+
 # Coding Principles
 
 - Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
@@ -16,6 +21,25 @@
 
 ## Defensive coding
 Don't add error handling, fallbacks, or validation **for scenarios that can't happen**. Trust internal code and framework guarantees. **Only validate at system boundaries** (user input, external APIs).
+
+# Code Style
+
+For production code (excluding temporary scripts), prioritize readability:
+
+- Use blank lines to separate logical groups of related statements and to separate definitions, such as functions and structs.
+- Format code clearly and consistently. Prioritize readability over minimizing line or character counts.
+- Choose names thoughtfully. Use clear, semantically precise names that avoid ambiguity or confusion.
+
+# Documentation
+
+- Documentation **should NOT restating the implementation**.
+- Use positive descriptions: describe what something does rather than what it does not do.
+
+For user-facing documentation (e.g. README):
+- Include only what users need to know.
+
+For developer-facing documentation (e.g. code comments):
+- Include only information that is not already evident from the code.
 
 # Dev environment tips
 
