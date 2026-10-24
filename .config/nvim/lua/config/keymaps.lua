@@ -2,7 +2,11 @@ vim.keymap.set("n", "<C-i>", "<C-i>", { noremap = true })
 
 -- Save
 vim.keymap.set("n", "<leader>w", function()
-    vim.api.nvim_command("update")
+    if vim.g.vscode then
+        require("vscode").action("workbench.action.files.save")
+    else
+        vim.api.nvim_command("update")
+    end
 end, { desc = "Save" })
 
 -- Super Tab

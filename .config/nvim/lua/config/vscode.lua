@@ -3,10 +3,13 @@ if not vim.g.vscode then
 end
 
 local enabled_plugins = {
+    "conform.nvim",
     "flash.nvim",
+    "guess-indent",
     "nvim-toggler",
     "nvim-treesitter",
     "nvim-treesitter-textobjects",
+    "visual-surround.nvim",
 }
 
 local config = require("lazy.core.config")
