@@ -163,6 +163,11 @@
             name = "jundot/omlx";
             clone_target = "https://github.com/jundot/omlx";
           }
+          {
+            name = "yetone/magpie-releases";
+            clone_target = "https://github.com/yetone/magpie-releases";
+            trusted = true;
+          }
         ];
 
         brews = [
@@ -171,8 +176,12 @@
 
         casks = [
           # Development
+          "cc-switch"
+          "chatgpt"
           "imhex"
+          "magpie-app"
           "orbstack"
+          "paseo"
           "termius"
           "utm"
           "visual-studio-code"
@@ -202,12 +211,9 @@
           "basictex"
           "blender@lts"
           "calibre"
-          "cc-switch"
-          "chatgpt"
           "feishu"
           "handbrake-app"
           "iina"
-          "mark-text"
           "notion"
           "obs"
           "pearcleaner"
@@ -261,6 +267,10 @@
         finder.FXPreferredViewStyle = "clmv";
       };
       security.pam.services.sudo_local.touchIdAuth = true;
+      security.pki.caCertificateBlacklist = [
+        "Comodo AAA Services root"
+        "emSign ECC Root CA - G3"
+      ];
 
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
