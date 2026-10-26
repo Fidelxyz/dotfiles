@@ -12,6 +12,21 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
+      nixpkgs.overlays = [
+        (final: prev: {
+          qbittorrent = prev.qbittorrent.overrideAttrs (_: {
+            version = "5.3.0";
+
+            src = prev.fetchFromGitHub {
+              owner = "qbittorrent";
+              repo = "qBittorrent";
+              rev = "release-5.3.0";
+              hash = "sha256-kJNl7AaH+vy57vFuofvEgW4fo5JbU9wwQJZJglmUkZA=";
+            };
+          });
+        })
+      ];
+
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
 
@@ -181,7 +196,7 @@
           "imhex"
           "magpie-app"
           "orbstack"
-          "paseo"
+          "openchamber"
           "termius"
           "utm"
           "visual-studio-code"
@@ -269,7 +284,6 @@
       security.pam.services.sudo_local.touchIdAuth = true;
       security.pki.caCertificateBlacklist = [
         "Comodo AAA Services root"
-        "emSign ECC Root CA - G3"
       ];
 
       system.activationScripts.applications.text = let
