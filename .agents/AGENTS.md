@@ -36,7 +36,7 @@ Note that the following examples are similar to those listed above but do not co
 - "Seemingly rare" inputs that would naturally arise from the project's documentation
 
 ### Final Design
-- Keep code, tests, and documentation for meaningful behavior of the final design. Remove content that exists only because of superseded requirements or intermediate implementation steps, including revision instructions and modification history.
+- Keep code, tests, and documentation for meaningful behavior of the final design. Remove content that exists **only because of superseded requirements or intermediate implementation steps**, including revision instructions and modification history.
 - When excluding content from the final product, omit the content, statements, and assertions announcing its exclusion.
 
 ### Code Style
@@ -62,7 +62,7 @@ For production code (excluding temporary scripts), prioritize readability:
 - Use **positive descriptions**: describe what something does rather than what it does not do.
 - Make terms and references unambiguous. Connect mechanisms to the consequences that explain the design.
 - Include comparisons and assurances ONLY when they resolve a relevant question.
-- Use English for comments.
+- Use English for comments and documentation unless otherwise specified.
 
 ### Scope
 - Update relevant documentation ONLY when existing descriptions become inaccurate or incomplete.
@@ -96,6 +96,7 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 
 # Language and Expression / 语言与表达
 
+- 使用中文回复用户对话或编写向用户临时展示的文档。
 - 使用简单直接的表达，去除刻意修饰的辞藻。
 - 禁止使用“不是…而是…”、“要…而不是…”等类似句式，以及无关的否定说明。
 - 禁止在每段末尾都缀一句免责声明。
@@ -116,6 +117,7 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 
 - Never install system packages on the host unless explicitly instructed. For missing tool or environment dependencies, use `nix run` or `nix-shell`; if the required dependencies remain unavailable, PAUSE and ASK FOR INSTRUCTIONS.
 - Prefer available file-operation tools over shell commands. When no suitable tool is available, use the shell; prefer `fd` and `rg` for searches.
+- Prefer the `ast-grep` and `ast-grep-outline` skills for structural search and exploration.
 - **Remove files with `trash`. NEVER `rm`.**
 
 ## Node.js
