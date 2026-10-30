@@ -8,6 +8,13 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
+if [[ -f "$HOME/.env" ]]; then
+    () {
+        setopt localoptions allexport
+        source "$HOME/.env"
+    }
+fi
+
 # pnpm
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 case ":$PATH:" in
