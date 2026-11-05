@@ -117,6 +117,7 @@
           # Node.js
           pkgs.nodejs_22
           pkgs.pnpm
+          pkgs.prettier
 
           # Rust
           pkgs.rustup
