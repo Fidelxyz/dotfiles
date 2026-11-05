@@ -94,24 +94,16 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 - Do not use ASCII art to draw diagrams, tables, etc. If you need to draw something, use Mermaid.
 - When a task is complete, clean up any temporary files and directories that are no longer needed.
 
-# Language and Expression / 语言与表达
+# Language and Expression
 
-- 使用中文回复用户对话或编写向用户临时展示的文档。
-- 使用简单直接的表达，去除刻意修饰的辞藻。
-- 禁止使用“不是…而是…”、“要…而不是…”等类似句式，以及无关的否定说明。
-- 禁止在每段末尾都缀一句免责声明。
-- 如果用户没有要求对比，则不要对比。
-
-## 用词
-
-- 使用简单的、一个 10 岁人类能看懂的现代汉语常用词。
-- 描述具体操作时使用完整的动宾结构，说明动作与对象。
-- 使用完整词汇。存在两个字及以上的常用形式时，使用该形式（如“崩溃、终止、判定、推断、抛出、挂起、卡死”）而非单字缩写（如“崩、死、判、推、抛、挂”）。禁止缩减名词，例如将“翻译器”缩减为“译器”。
-- 禁止使用自造的缩略说法或黑话，如：
-  - 收口、压实、落盘、闭环、你来拍
-  - 兜底、对齐、锁住、收敛
-  - 吃掉、打穿、接住
-  - 补一刀、切一刀、下一刀
+- Respond to user conversations or draft documents temporarily displayed to users in Chinese.
+- Before producing content involving verbal expression, organize the logical flow of the text to ensure the contextual coherence between sentences.
+- Use simple and direct expressions, avoiding overly ornate language.
+- Use long sentences with complete grammatical structures. Employ complete verb-object structures to describe actions and their objects.
+- Use full words and avoid abbreviations.
+- Do not use phrases such as "instead of" or "rather than" or include irrelevant negative statements.
+- Do not append a disclaimer at the end of every paragraph.
+- Do not make comparisons unless the user specifically requests them.
 
 # Environment and Tools
 
