@@ -11,7 +11,12 @@ return {
         optional = true,
         opts = {
             formatters_by_ft = {
-                json = { "jq" },
+                json = { "prettier" },
+                jsonc = { "prettier" },
+            },
+            disable_autoformat_ft = {
+                json = true,
+                jsonc = true,
             },
         },
     },

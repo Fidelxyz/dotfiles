@@ -8,14 +8,26 @@ return {
         formatters_by_ft = {
             -- defined in language-specific configs
         },
-        format_on_save = {
-            timeout_ms = 500,
-            lsp_format = "fallback",
+        disable_autoformat_ft = {
+            -- defined in language-specific configs
         },
     },
 
     config = function(_, opts)
         local conform = require("conform")
+
+        local disable_autoformat_ft = opts.disable_autoformat_ft
+        opts.disable_autoformat_ft = nil
+        opts.format_on_save = function(bufnr)
+            -- Disable with a global or buffer-local variable
+            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
+            end
+            if disable_autoformat_ft[vim.bo[bufnr].filetype] then
+                return
+            end
+            return { timeout_ms = 500, lsp_format = "fallback" }
+        end
 
         conform.setup(opts)
 
@@ -30,16 +42,6 @@ return {
             end
             conform.format({ async = true, lsp_format = "fallback", range = range })
         end, { range = true })
-
-        require("conform").setup({
-            format_on_save = function(bufnr)
-                -- Disable with a global or buffer-local variable
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                    return
-                end
-                return { timeout_ms = 500, lsp_format = "fallback" }
-            end,
-        })
 
         vim.api.nvim_create_user_command("FormatDisable", function(args)
             if args.bang then
