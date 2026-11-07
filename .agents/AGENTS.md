@@ -90,6 +90,7 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 # Interaction
 
 - Preserve user changes, including edits made between conversations.
+- When the user asks a question, answer the question directly. Do not modify files unless the user explicitly asks for the change.
 - Use subagents when bounded, independent delegation materially improves progress or verification. Review every returned result.
 - Do not use ASCII art to draw diagrams, tables, etc. If you need to draw something, use Mermaid.
 - When a task is complete, clean up any temporary files and directories that are no longer needed.
@@ -109,7 +110,7 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 
 - Never install system packages on the host unless explicitly instructed. For missing tool or environment dependencies, use `nix run` or `nix-shell`; if the required dependencies remain unavailable, PAUSE and ASK FOR INSTRUCTIONS.
 - Prefer available file-operation tools over shell commands. When no suitable tool is available, use the shell; prefer `fd` and `rg` for searches.
-- Prefer the `ast-grep` and `ast-grep-outline` skills for structural search and exploration.
+- Prefer `ast-grep` and `ast-grep outline` for structural search and exploration.
 - **Remove files with `trash`. NEVER `rm`.**
 
 ## Node.js
