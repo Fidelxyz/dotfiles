@@ -7,22 +7,53 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-omlx = {
+      url = "github:jundot/omlx";
+      flake = false;
+    };
+    homebrew-open-tap-casks = {
+      url = "github:open-tap/homebrew-casks";
+      flake = false;
+    };
+    homebrew-magpie-releases = {
+      url = "github:yetone/magpie-releases";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{
+    self,
+    nix-darwin,
+    nixpkgs,
+    nix-homebrew,
+    homebrew-core,
+    homebrew-cask,
+    homebrew-omlx,
+    homebrew-open-tap-casks,
+    homebrew-magpie-releases,
+  }:
   let
     configuration = { pkgs, config, ... }: {
+      # NixOS/nixpkgs#582675: per-platform node_modules hash for opencode.
       nixpkgs.overlays = [
         (final: prev: {
-          qbittorrent = prev.qbittorrent.overrideAttrs (_: {
-            version = "5.3.0";
-
-            src = prev.fetchFromGitHub {
-              owner = "qbittorrent";
-              repo = "qBittorrent";
-              rev = "release-5.3.0";
-              hash = "sha256-kJNl7AaH+vy57vFuofvEgW4fo5JbU9wwQJZJglmUkZA=";
-            };
+          opencode = prev.opencode.overrideAttrs (old: {
+            node_modules = old.node_modules.overrideAttrs (_: {
+              outputHash =
+                if final.stdenv.hostPlatform.isDarwin then
+                  "sha256-dIveiaiPFGSItwLyeMuPDxTE9gpvvnlTCB/+nG24qCc="
+                else
+                  "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
+            });
           });
         })
       ];
@@ -152,9 +183,6 @@
           pkgs.codex
           pkgs.ccusage
           pkgs.xdg-ninja
-
-          # Casks
-          pkgs.qbittorrent
         ];
 
       fonts.packages = [
@@ -169,22 +197,13 @@
         enable = true;
         enableZshIntegration = true;
 
-        onActivation.autoUpdate = true;
+        onActivation.autoUpdate = false;
         onActivation.cleanup = "zap";
         onActivation.upgrade = true;
         onActivation.extraFlags = [ "--verbose" ];
 
-        taps = [
-          {
-            name = "jundot/omlx";
-            clone_target = "https://github.com/jundot/omlx";
-          }
-          {
-            name = "yetone/magpie-releases";
-            clone_target = "https://github.com/yetone/magpie-releases";
-            trusted = true;
-          }
-        ];
+        taps = map (name: { inherit name; trusted = true; })
+          (builtins.attrNames config.nix-homebrew.taps);
 
         brews = [
           "jundot/omlx/omlx"
@@ -192,7 +211,6 @@
 
         casks = [
           # Development
-          "cc-switch"
           "chatgpt"
           "imhex"
           "magpie-app"
@@ -237,6 +255,8 @@
           "squirrel-app"
           "tencent-meeting"
           "tuxera-ntfs"
+
+          "open-tap/casks/qbittorrent"
         ];
       };
 
@@ -271,7 +291,6 @@
         };
         options = "--delete-older-than 7d";
       };
-
 
       system.primaryUser = "fidel";
 
@@ -319,6 +338,15 @@
           nix-homebrew = {
             enable = true;
             user = "fidel";
+            mutableTaps = false;
+
+            taps = {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+              "jundot/homebrew-omlx" = homebrew-omlx;
+              "open-tap/homebrew-casks" = homebrew-open-tap-casks;
+              "yetone/homebrew-magpie-releases" = homebrew-magpie-releases;
+            };
           };
         }
       ];
