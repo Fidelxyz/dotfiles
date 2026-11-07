@@ -20,11 +20,6 @@ vim.keymap.set("i", "<Tab>", function()
         return
     end
 
-    local smart_tab = is_not_vscode and require("smart-tab")
-    if smart_tab and not utils.is_blank_line() and smart_tab.smart_tab() then -- Smart tab
-        return
-    end
-
     local auto_indent = is_not_vscode and require("utils.auto-indent")
     if auto_indent and auto_indent.check_indent() then -- Auto indent
         return
