@@ -29,8 +29,16 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 # Docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+# Kubernetes
+export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
+export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+# github-copilot-cli
+export COPILOT_HOME="$XDG_CONFIG_HOME"/copilot
 # xorg-xauth
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+# cc-safety-net
+export CC_SAFETY_NET_HOME="$XDG_CONFIG_HOME/cc-safety-net"
+export CC_SAFETY_NET_AUDIT_HOME="$XDG_STATE_HOME"
 
 # ==============================
 
