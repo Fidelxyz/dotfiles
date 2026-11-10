@@ -145,9 +145,10 @@
           pkgs.ruff
           pkgs.basedpyright
 
-          # Node.js
+          # JavaScript / TypeScript
           pkgs.nodejs_22
           pkgs.pnpm
+          pkgs.vtsls
           pkgs.prettier
 
           # Rust
@@ -180,7 +181,6 @@
 
           pkgs.gh
           pkgs.opencode
-          pkgs.codex
           pkgs.ccusage
           pkgs.xdg-ninja
         ];
@@ -211,7 +211,6 @@
 
         casks = [
           # Development
-          "chatgpt"
           "imhex"
           "magpie-app"
           "orbstack"
@@ -302,6 +301,9 @@
         finder.FXPreferredViewStyle = "clmv";
       };
       security.pam.services.sudo_local.touchIdAuth = true;
+      security.sudo.extraConfig = ''
+        Defaults env_keep += "XDG_CONFIG_HOME"
+      '';
       security.pki.caCertificateBlacklist = [
         "Comodo AAA Services root"
       ];
