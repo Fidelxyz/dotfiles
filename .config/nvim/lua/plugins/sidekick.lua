@@ -16,7 +16,7 @@ return {
         {
             "<c-.>",
             function()
-                require("sidekick.cli").focus({ name = "codex" })
+                require("sidekick.cli").focus({ name = "opencode" })
             end,
             desc = "Sidekick Focus",
             mode = { "n", "t", "i", "x" },
@@ -24,7 +24,7 @@ return {
         {
             "<leader>aa",
             function()
-                require("sidekick.cli").toggle({ name = "codex" })
+                require("sidekick.cli").toggle({ name = "opencode" })
             end,
             desc = "Sidekick Toggle CLI",
         },
