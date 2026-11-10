@@ -1,6 +1,6 @@
 ---
 name: nix-ephemeral-tools
-description: Run a missing command from Nixpkgs with `nix run` or use `nix-shell` for a temporary tool environment, without installing packages into a system or user profile. Use when a needed CLI is absent and Nix is available.
+description: Run a missing command from Nixpkgs with `nix run` or use `nix shell` for a temporary tool environment, without installing packages into a system or user profile. Use when a needed CLI is absent and Nix is available.
 ---
 
 # Temporary tools with Nix
@@ -16,13 +16,13 @@ Use Nix to run a needed tool without adding it to a system or user profile. Chec
 - **For several tools or commands that need a shared environment**:
 
   ```sh
-  nix-shell -p package... --run 'command'
+  nix shell nixpkgs#package... -c command args...
   ```
 
 - **When an interactive shell is needed**:
 
-  ```
-  nix-shell -p package...
+  ```sh
+  nix shell nixpkgs#package...
   ```
 
 The package attribute and executable name can differ; check the package's main program when needed.

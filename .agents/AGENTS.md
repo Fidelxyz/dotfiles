@@ -108,7 +108,7 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 
 # Environment and Tools
 
-- Never install system packages on the host unless explicitly instructed. For missing tool or environment dependencies, use `nix run` or `nix-shell`; if the required dependencies remain unavailable, PAUSE and ASK FOR INSTRUCTIONS.
+- Never install system packages on the host unless explicitly instructed. For missing tool or environment dependencies, use `nix run` or `nix shell`; if the required dependencies remain unavailable, PAUSE and ASK FOR INSTRUCTIONS.
 - Prefer available file-operation tools over shell commands. When no suitable tool is available, use the shell; prefer `fd` and `rg` for searches.
 - Prefer `ast-grep` and `ast-grep outline` for structural search and exploration.
 - **Remove files with `trash`. NEVER `rm`.**
