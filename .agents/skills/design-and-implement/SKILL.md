@@ -36,7 +36,7 @@ List all declarations to add, remove, or change, grouped by logical structure. S
 
 For each related file, organize the declaration order for coherent top-to-bottom reading. Group related definitions by role, and order functions to follow the main processing flow, e.g. constructors - public interfaces - internal implementation; entry points - processing stages - supporting helpers. Proactively improve the existing declaration order wherever a clearer organization is possible.
 
-Show the complete declaration order, connecting declarations with →. Bold changed declarations and label additions, removals, modifications, or reorders. Group nested members under their enclosing type; uninvolved internal members may be omitted. Organize declarations into logical groups and collapse unchanged groups.
+Show the complete declaration order, connecting declarations with →, and state the reason. Bold changed declarations and label additions, removals, modifications, or reorders. Group nested members under their enclosing type; uninvolved internal members may be omitted. Organize declarations into logical groups and collapse unchanged groups.
 
 > Example:
 >
@@ -52,7 +52,9 @@ List test declarations to add, remove, or change, grouped by logical structure. 
 
 ## Stage 4: Implement
 
-Implement the confirmed design.
+Implement the confirmed design with two separate subagents under the same working tree: one writes the implementation code and the other writes the tests. Give each subagent the corresponding confirmed design and scope, and instruct it not to read the other's code. Make documentation changes yourself.
+
+After both subagents finish, review the diff against the confirmed design, run the tests, and fix mismatches between the implementation and the tests by sending follow-up instructions to the responsible subagent.
 
 When additional signature changes are needed within the confirmed architecture and task scope, proceed and record the reasons. When the architecture or task scope needs to change, return to the corresponding design stage and wait for user direction.
 
