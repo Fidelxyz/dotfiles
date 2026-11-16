@@ -7,8 +7,6 @@
 - Keep components modular and concerns clearly separated. Extract functions to express distinct responsibilities, remove duplication, or hide implementation details.
 - Judge complexity across callers and the complete workflow, not by line count. Wrappers that only forward calls need a concrete benefit.
 - Keep decisions and their required dependencies within the same responsibility boundary. Callers should supply only information relevant to the operation.
-- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
-- **Design the final implementation as if the current requirements had been known from the start.** Make architectural decisions for the long term and proactively refactor existing code when doing so improves the design.
 - Minimizing dependencies is not required. Check the standard library and existing libraries before implementing common functionality. Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability.
 - Enable only the dependency features the project uses. Add build steps only when they serve a current requirement.
 
@@ -36,6 +34,9 @@ Note that the following examples are similar to those listed above but do not co
 - "Seemingly rare" inputs that would naturally arise from the project's documentation
 
 ### Final Design
+- **Design the final implementation as if the current requirements had been known from the start.**
+- Proactively refactor existing code when doing so improves the design.
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
 - Keep code, tests, and documentation for meaningful behavior of the final design. Remove content that exists **only because of superseded requirements or intermediate implementation steps**, including revision instructions and modification history.
 - When excluding content from the final product, omit the content, statements, and assertions announcing its exclusion.
 
