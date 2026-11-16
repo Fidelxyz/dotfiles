@@ -43,21 +43,6 @@
   }:
   let
     configuration = { pkgs, config, ... }: {
-      # NixOS/nixpkgs#582675: per-platform node_modules hash for opencode.
-      nixpkgs.overlays = [
-        (final: prev: {
-          opencode = prev.opencode.overrideAttrs (old: {
-            node_modules = old.node_modules.overrideAttrs (_: {
-              outputHash =
-                if final.stdenv.hostPlatform.isDarwin then
-                  "sha256-dIveiaiPFGSItwLyeMuPDxTE9gpvvnlTCB/+nG24qCc="
-                else
-                  "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
-            });
-          });
-        })
-      ];
-
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
 
@@ -127,10 +112,15 @@
           pkgs.wezterm.terminfo
 
           # Development
-          pkgs.tree-sitter
+          pkgs.ccusage
+          pkgs.claude-code
           pkgs.docker
+          pkgs.gh
+          pkgs.opencode
+
           pkgs.libiconv
           pkgs.pkg-config
+          pkgs.tree-sitter
 
           # Version Control Systems
           pkgs.git
@@ -173,15 +163,13 @@
           pkgs.shellcheck
 
           # Media Processing
+          pkgs.czkawka
           pkgs.ffmpeg
           pkgs.ffmpeg.dev
           pkgs.gpac
+          pkgs.tdl
           pkgs.yt-dlp
-          pkgs.czkawka
 
-          pkgs.gh
-          pkgs.opencode
-          pkgs.ccusage
           pkgs.xdg-ninja
         ];
 
@@ -211,14 +199,17 @@
 
         casks = [
           # Development
+          "claude"
           "imhex"
           "magpie-app"
           "orbstack"
           "openchamber"
+          "t3-code"
           "termius"
           "utm"
           "visual-studio-code"
           "wezterm"
+          "xquartz"
 
           # Browsers
           "firefox"
@@ -252,6 +243,7 @@
           "pearcleaner"
           "shutter-encoder"
           "squirrel-app"
+          "telegram-desktop"
           "tencent-meeting"
           "tuxera-ntfs"
 
@@ -274,6 +266,8 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      nixpkgs.config.allowUnfree = true;
 
       nix.optimise = {
         automatic = true;
