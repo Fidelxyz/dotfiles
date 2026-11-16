@@ -53,6 +53,10 @@
         LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
       };
 
+      # GUI apps receive their environment from launchd. Nix-wrapped tools that
+      # they spawn, such as claude-code, read NIX_SSL_CERT_FILE to find the CA bundle.
+      launchd.user.envVariables.NIX_SSL_CERT_FILE = config.environment.variables.NIX_SSL_CERT_FILE;
+
       environment.systemPackages =
         [
           # GNU programs non-existing in macOS
