@@ -290,6 +290,7 @@
       };
 
       system.primaryUser = "fidel";
+      users.users.${config.system.primaryUser}.home = "/Users/${config.system.primaryUser}";
 
       system.defaults = {
         dock.autohide = true;
@@ -299,9 +300,6 @@
         finder.FXPreferredViewStyle = "clmv";
       };
       security.pam.services.sudo_local.touchIdAuth = true;
-      security.sudo.extraConfig = ''
-        Defaults env_keep += "XDG_CONFIG_HOME"
-      '';
       security.pki.caCertificateBlacklist = [
         "Comodo AAA Services root"
       ];
@@ -334,11 +332,13 @@
       modules = [
         configuration
         nix-homebrew.darwinModules.nix-homebrew
-        {
+        ({ config, ... }: {
           nix-homebrew = {
             enable = true;
-            user = "fidel";
+            user = config.system.primaryUser;
             mutableTaps = false;
+
+            extraEnv.XDG_CONFIG_HOME = "${config.users.users.${config.nix-homebrew.user}.home}/.config";
 
             taps = {
               "homebrew/homebrew-core" = homebrew-core;
@@ -348,7 +348,7 @@
               "yetone/homebrew-magpie-releases" = homebrew-magpie-releases;
             };
           };
-        }
+        })
       ];
     };
   };
