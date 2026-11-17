@@ -32,6 +32,8 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 # Kubernetes
 export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+# Claude
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME"/claude
 # github-copilot-cli
 export COPILOT_HOME="$XDG_CONFIG_HOME"/copilot
 # xorg-xauth
