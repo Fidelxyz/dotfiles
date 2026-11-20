@@ -208,7 +208,6 @@
           "magpie-app"
           "orbstack"
           "openchamber"
-          "t3-code"
           "termius"
           "utm"
           "visual-studio-code"
@@ -251,6 +250,7 @@
           "tencent-meeting"
           "tuxera-ntfs"
 
+          "open-tap/casks/cinecred"
           "open-tap/casks/qbittorrent"
         ];
       };
