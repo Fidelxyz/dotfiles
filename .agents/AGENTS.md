@@ -92,7 +92,9 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 
 - Preserve user changes, including edits made between conversations.
 - When the user asks a question, answer the question directly. Do not modify files unless the user explicitly asks for the change.
+- When auto review blocks an operation that the task still requires, ask the user for authorization through a question.
 - Use subagents when bounded, independent delegation materially improves progress or verification. Review every returned result.
+- Your knowledge might be outdated. Verify time-sensitive facts, such as projects and APIs, with local sources or a web search before relying on them.
 - Do not use ASCII art to draw diagrams, tables, etc. If you need to draw something, use Mermaid.
 - When a task is complete, clean up any temporary files and directories that are no longer needed.
 
@@ -113,6 +115,7 @@ This is not a real design rule. It is just a memorial to a ridiculous mistake.
 - Prefer available file-operation tools over shell commands. When no suitable tool is available, use the shell; prefer `fd` and `rg` for searches.
 - Prefer `ast-grep` and `ast-grep outline` for structural search and exploration.
 - **Remove files with `trash`. NEVER `rm`.**
+- Use GNU syntax and options for coreutils, findutils, diffutils, binutils, `sed`, `awk`, `grep`, `tar`, `which`, `gzip`, and `make`, such as `sed -i 's/a/b/' file` without an empty suffix argument.
 
 ## Node.js
 - Use `pnpm` as the package manager.
