@@ -27,17 +27,23 @@ return {
 
         opts = function()
             local telescope_config = require("telescope.config")
+            local excluded_names = { ".git", ".jj", unpack(require("utils.ignored-files")) }
 
             -- Clone the default Telescope configuration
             local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
 
             -- I want to search in hidden/dot files.
             table.insert(vimgrep_arguments, "--hidden")
-            -- I don't want to search in the `.git` directory.
-            table.insert(vimgrep_arguments, "--glob")
-            table.insert(vimgrep_arguments, "!**/.git/*")
-            table.insert(vimgrep_arguments, "--glob")
-            table.insert(vimgrep_arguments, "!**/.jj/*")
+            -- I want to search in VCS-ignored files.
+            table.insert(vimgrep_arguments, "--no-ignore-vcs")
+
+            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+            local find_command = { "fd", "--type", "f", "--color", "never", "--hidden", "--no-ignore-vcs" }
+
+            for _, name in ipairs(excluded_names) do
+                vim.list_extend(vimgrep_arguments, { "--glob", "!" .. name })
+                vim.list_extend(find_command, { "--exclude", name })
+            end
 
             return {
                 defaults = {
@@ -46,41 +52,7 @@ return {
                 },
                 pickers = {
                     find_files = {
-                        -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-                        -- find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-                        find_command = {
-                            "fd",
-                            "--type",
-                            "f",
-                            "--color",
-                            "never",
-                            "--hidden",
-                            "--no-ignore-vcs",
-                            "--exclude",
-                            ".git",
-                            "--exclude",
-                            ".jj",
-                        },
-                        live_grep = {
-                            additional_args = {
-                                "--hidden",
-                                "--glob",
-                                "!.git",
-                                "--glob",
-                                "!.jj",
-                                "--no-ignore-vcs",
-                            },
-                        },
-                        grep_string = {
-                            additional_args = {
-                                "--hidden",
-                                "--glob",
-                                "!.git",
-                                "--glob",
-                                "!.jj",
-                                "--no-ignore-vcs",
-                            },
-                        },
+                        find_command = find_command,
                     },
                 },
             }
