@@ -66,19 +66,3 @@ vim.api.nvim_create_autocmd("FileType", {
         -- end
     end,
 })
-
-vim.api.nvim_create_augroup("ColorColumn", {})
-vim.api.nvim_create_autocmd("FileType", {
-    group = "ColorColumn",
-    pattern = { "text" },
-    callback = function()
-        vim.opt_local.colorcolumn = "80"
-    end,
-})
-vim.api.nvim_create_autocmd("FileType", {
-    group = "ColorColumn",
-    pattern = { "markdown", "lua" },
-    callback = function()
-        vim.opt_local.colorcolumn = "120"
-    end,
-})
