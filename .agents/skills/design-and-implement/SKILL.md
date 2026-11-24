@@ -46,7 +46,7 @@ Show the complete declaration order, connecting declarations with →, and state
 
 ## Stage 3: Design the Test Signatures
 
-Use the confirmed architecture and implementation signatures to design related tests. Give each test one independent behavior and keep test cases minimal.
+Use the confirmed architecture and implementation signatures to design related tests. Give each test one independent behavior and keep test cases minimal. After designing the tests, review them and remove tests that duplicate coverage or merely restate the implementation.
 
 List test declarations to add, remove, or change, grouped by logical structure. Include test helpers and fixtures whose declarations change. Follow the same rules and format as stage 2.
 
