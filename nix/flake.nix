@@ -143,7 +143,7 @@
           pkgs.nodejs_22
           pkgs.pnpm
           pkgs.vtsls
-          pkgs.prettier
+          pkgs.oxfmt
 
           # Rust
           pkgs.rustup

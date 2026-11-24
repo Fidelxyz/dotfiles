@@ -11,8 +11,8 @@ return {
         optional = true,
         opts = {
             formatters_by_ft = {
-                json = { "prettier" },
-                jsonc = { "prettier" },
+                json = { "oxfmt" },
+                jsonc = { "oxfmt" },
             },
             disable_autoformat_ft = {
                 json = true,

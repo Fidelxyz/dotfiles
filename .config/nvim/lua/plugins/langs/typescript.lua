@@ -87,9 +87,9 @@ return {
         optional = true,
         opts = {
             formatters_by_ft = {
-                javascript = { "prettier", "biome-organize-imports" },
-                typescript = { "prettier", "biome-organize-imports" },
-                vue = { "prettier", "biome-organize-imports" },
+                javascript = { "oxfmt", "biome-organize-imports" },
+                typescript = { "oxfmt", "biome-organize-imports" },
+                vue = { "oxfmt", "biome-organize-imports" },
             },
         },
     },
