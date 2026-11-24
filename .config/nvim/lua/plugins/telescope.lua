@@ -27,7 +27,15 @@ return {
 
         opts = function()
             local telescope_config = require("telescope.config")
-            local excluded_names = { ".git", ".jj", unpack(require("utils.ignored-files")) }
+            local excluded_paths = {
+                ".git",
+                ".jj",
+                ".DS_Store",
+                "node_modules",
+                "target",
+                ".vitepress/cache",
+                ".vitepress/dist",
+            }
 
             -- Clone the default Telescope configuration
             local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
@@ -40,9 +48,9 @@ return {
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
             local find_command = { "fd", "--type", "f", "--color", "never", "--hidden", "--no-ignore-vcs" }
 
-            for _, name in ipairs(excluded_names) do
-                vim.list_extend(vimgrep_arguments, { "--glob", "!" .. name })
-                vim.list_extend(find_command, { "--exclude", name })
+            for _, path in ipairs(excluded_paths) do
+                vim.list_extend(vimgrep_arguments, { "--glob", "!" .. path })
+                vim.list_extend(find_command, { "--exclude", path })
             end
 
             return {
