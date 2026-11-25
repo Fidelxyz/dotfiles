@@ -142,6 +142,7 @@
           # JavaScript / TypeScript
           pkgs.nodejs_22
           pkgs.pnpm
+          pkgs.bun
           pkgs.vtsls
           pkgs.oxfmt
 
@@ -203,7 +204,6 @@
 
         casks = [
           # Development
-          "claude"
           "imhex"
           "magpie-app"
           "orbstack"
